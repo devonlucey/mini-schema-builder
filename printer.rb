@@ -57,5 +57,39 @@ class Printer
 			c += 1
 		end
 		puts "printing #{fieldsToAdd} single-lines"
+		return placeholder
+	end
+
+	#Prints the photoWithDescription field template based on number requested.
+	def self.photoWithDescriptionPrint(selectedGroup, fieldsToAdd, placeholder)
+	c = 0
+		while c < fieldsToAdd
+			placeholder[selectedGroup - 1]['fields'] << Templates.lookerPhotoWithDescription()
+			c += 1
+		end
+		puts "printing #{fieldsToAdd} photos"
+		return placeholder
+	end
+
+	#Prints the multi-line field template based on number requested.
+	def self.multiLinePrint(selectedGroup, fieldsToAdd, placeholder)
+		c = 0
+		while c < fieldsToAdd 
+			placeholder[selectedGroup - 1]['fields'] << Templates.lookerMultiLine()
+			c += 1
+		end
+		puts "printing #{fieldsToAdd} single-lines"
+		return placeholder
+	end
+
+	#Prints the choice field template based on number requested.
+	def self.choicePrint(selectedGroup, fieldsToAdd, placeholder)
+		c = 0
+		while c < fieldsToAdd 
+			placeholder[selectedGroup - 1]['fields'] << Templates.lookerChoice()
+			c += 1
+		end
+		puts "printing #{fieldsToAdd} single-lines"
+		return placeholder
 	end
 end
