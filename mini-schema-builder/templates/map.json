@@ -1,0 +1,21 @@
+{
+          "name": "Map or Identifying Site Image/Information",
+          "reports": [],
+          "relationship": "information",
+          "forms": {
+            "client": {
+              "type": "file",
+              "validations": {
+                "fileTypes": [
+                  "application/pdf",
+                  "image/jpeg",
+                  "image/png"
+                ]
+              }
+            },
+            "looker": {
+              "type": "file-display"
+            }
+          },
+          "id": "property_information_map_or_identifying_site_image_information"
+        }

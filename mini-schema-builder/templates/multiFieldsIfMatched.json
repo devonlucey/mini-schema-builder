@@ -1,0 +1,23 @@
+"multiFieldsIfMatched": [
+    {
+      "name": "",
+      "requirements": [
+        {
+          "meetsAllCriteria": [
+            {
+              "formField": "",
+              "includesOneOf": [
+                {
+                  "type": "string",
+                  "value": ""
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "addFields": [
+      
+      ]
+    },
+  ],

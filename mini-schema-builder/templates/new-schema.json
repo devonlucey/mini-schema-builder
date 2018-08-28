@@ -1,0 +1,224 @@
+{
+  "type": "",
+  "priority": 0,
+  "minimumClientVersion": 1,
+  "name": "",
+  "photoGuideURL": "",
+  "itemCode": "",
+  "price": {
+    "US": {
+      "amount": 0,
+      "currency": "USD"
+    }
+  },
+  "lookerFee": {
+    "US": {
+      "amount": 0,
+      "currency": "USD"
+    }
+  },
+  "deliveryOptions": {
+    "cutoff": {
+      "hour": 13,
+      "minute": 0,
+      "second": 0,
+      "timezone": "America/Chicago"
+    },
+    "weekendDelivery": true,
+    "holidayDelivery": false,
+    "options": [
+      {
+        "name": "Standard",
+        "days": 5,
+        "price": {
+          "US": {
+            "amount": 0,
+            "currency": "USD"
+          }
+        }
+      },
+      {
+        "name": "Rush 2 Day",
+        "days": 2,
+        "price": {
+          "US": {
+            "amount": 3500,
+            "currency": "USD"
+          }
+        },
+        "itemCode": "302456"
+      },
+      {
+        "name": "Rush 1 Day",
+        "days": 1,
+        "price": {
+          "US": {
+            "amount": 5000,
+            "currency": "USD"
+          }
+        },
+        "itemCode": "400006"
+      }
+    ]
+  },
+  "skipDeliverables": {
+    "pdf": [
+      "public"
+    ]
+  },
+  "skipQA": false,
+  "useChrome": false,
+  "taxCode": "",
+  "glAccountNumber": "5000",
+  "attachInvoice": true,
+  "estimatedTime": {
+    "min": 20,
+    "max": 20
+  },
+  "callScripts": {
+    "looker": {
+      "onsiteContact": ""
+    }
+  },
+  "defaultKeywords": [],
+  "fields": [
+    {
+      "name": "PO/Reference Number",
+      "reports": [
+        "client",
+        "public"
+      ],
+      "forms": {
+        "client": {
+          "type": "reference-number",
+          "validations": {
+            "required": true
+          }
+        }
+      },
+      "id": "reference_number"
+    },
+    {
+      "name": "Primary On-Site Contact",
+      "type": "group",
+      "groupType": "contact",
+      "fields": [
+        {
+          "name": "Name",
+          "reports": [
+            "client"
+          ],
+          "relationship": "information",
+          "forms": {
+            "client": {
+              "type": "proper-name",
+              "validations": {
+                "required": true
+              }
+            },
+            "looker": {
+              "type": "proper-name-display"
+            }
+          },
+          "id": "primary_onsite_contact_name"
+        },
+        {
+          "name": "Email",
+          "reports": [
+            "client"
+          ],
+          "forms": {
+            "client": {
+              "type": "email"
+            }
+          },
+          "id": "primary_onsite_contact_email"
+        },
+        {
+          "name": "Phone",
+          "reports": [
+            "client"
+          ],
+          "relationship": "information",
+          "forms": {
+            "client": {
+              "type": "phone",
+              "validations": {
+                "required": true
+              }
+            },
+            "looker": {
+              "type": "phone-display"
+            }
+          },
+          "id": "primary_onsite_contact_phone"
+        },
+        {
+          "name": "Alternate Phone",
+          "reports": [
+            "client"
+          ],
+          "relationship": "information",
+          "forms": {
+            "client": {
+              "type": "phone"
+            },
+            "looker": {
+              "type": "phone-display"
+            }
+          },
+          "id": "primary_onsite_contact_alternate_phone"
+        }
+      ]
+    },
+    {
+      "name": "Location",
+      "type": "group",
+      "groupType": "look-address",
+      "fields": [
+        {
+          "name": "Address",
+          "reports": [
+            "client"
+          ],
+          "relationship": "information",
+          "forms": {
+            "client": {
+              "type": "address-box",
+              "validations": {
+                "required": true
+              }
+            },
+            "looker": {
+              "type": "text"
+            }
+          },
+          "index": true,
+          "id": "location_address"
+        }
+      ]
+    },
+    {
+      "name": "Looker Instructions",
+      "forms": {
+        "looker": {
+          "type": "instructions",
+          "content": ""
+        }
+      },
+      "id": "looker_instructions"
+    },
+    {
+      "name": "Delivery Options",
+      "forms": {
+        "client": {
+          "type": "delivery-options",
+          "validations": {
+            "required": true
+          }
+        }
+      },
+      "id": "delivery_options"
+    }
+  ]
+}

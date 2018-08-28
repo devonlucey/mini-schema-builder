@@ -1,0 +1,19 @@
+{
+          "destinationGroup": "",
+          "field": {
+            "name": "",
+            "reports": [
+              "client",
+              "public"
+            ],
+            "forms": {
+              "looker": {
+                "type": "photo",
+                "validations": {
+                  "required": true
+                }
+              }
+            },
+            "id": ""
+          }
+        }

@@ -1,0 +1,10 @@
+{
+  "name": "",
+  "reports": [],
+  "forms": {
+    "client": {
+      "type": "boolean"
+    }
+  },
+  "id": ""
+}

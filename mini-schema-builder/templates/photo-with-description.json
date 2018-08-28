@@ -1,0 +1,54 @@
+{
+      "name": "Photos",
+      "type": "group",
+      "groupType": "media",
+      "fields": [
+        {
+          "name": "",
+          "type": "group",
+          "groupType": "photo-with-description",
+          "multiple": {
+            "count": 1
+          },
+          "reports": [
+            "client",
+            "public"
+          ],
+          "fields": [
+            {
+              "name": "Photo",
+              "reports": [
+                "client",
+                "public"
+              ],
+              "forms": {
+                "looker": {
+                  "type": "photo",
+                  "validations": {
+                    "required": true
+                  }
+                }
+              },
+              "id": "photos_ _photo"
+            },
+            {
+              "name": "Description",
+              "reports": [
+                "client",
+                "public"
+              ],
+              "forms": {
+                "looker": {
+                  "type": "multi-line",
+                  "validations": {
+                    "required": true
+                  }
+                }
+              },
+              "id": "photos_ _description"
+            }
+          ],
+          "id": "photos_"
+        }
+      ]
+    }

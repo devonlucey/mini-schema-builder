@@ -1,0 +1,21 @@
+{
+  "name": "",
+  "reports": [
+    "client",
+    "public"
+  ],
+  "forms": {
+    "looker": {
+      "type": "photo",
+      "validations": {
+        "required": true,
+        "fileTypes": [
+          "image/jpeg",
+          "image/png"
+        ]
+      },
+      "helpURL": ""
+    }
+  },
+  "id": "media_"
+}

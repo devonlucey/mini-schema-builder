@@ -1,0 +1,54 @@
+{
+          "destinationGroup": "",
+          "field": {
+            "name": "",
+            "type": "group",
+            "groupType": "photo-with-description",
+            "multiple": {
+              "count": 
+            },
+            "reports": [
+              "client",
+              "public"
+            ],
+            "validations": {
+              "required": true
+            },
+            "fields": [
+              {
+                "name": "Photo",
+                "reports": [
+                  "client",
+                  "public"
+                ],
+                "forms": {
+                  "looker": {
+                    "type": "photo",
+                    "validations": {
+                      "required": true
+                    },
+                    "helpURL": ""
+                  }
+                },
+                "id": ""
+              },
+              {
+                "name": "Description",
+                "reports": [
+                  "client",
+                  "public"
+                ],
+                "forms": {
+                  "looker": {
+                    "type": "multi-line",
+                    "validations": {
+                      "required": true
+                    }
+                  }
+                },
+                "id": ""
+              }
+            ],
+            "id": ""
+          }
+        }

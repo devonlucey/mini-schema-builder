@@ -1,0 +1,4 @@
+To start use 'ruby app.rb'
+
+Currently supported groups: generic and media
+Currently supported fields: photo and single-line
