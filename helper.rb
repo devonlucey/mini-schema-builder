@@ -3,10 +3,12 @@ require 'json'
 
 class Helper
 
+	#Called to start building a new schema.
 	def buildNewSchema(newSchema)
 		addReferenceNumber(newSchema)
 	end
 
+	#Optional reference number.
 	def addReferenceNumber(newSchema)
 		puts "Would you like to add a reference number?\nyes || no"
 		response = gets.chomp
@@ -18,6 +20,7 @@ class Helper
 		end
 	end
 
+	#Optional address box.
 	def addAddress(newSchema)
 		puts "Would you like to add an address box?\nyes || no"
 		response = gets.chomp
@@ -29,6 +32,7 @@ class Helper
 		end
 	end
 
+	#Optional onsite contact.
 	def addOnsiteContact(newSchema)
 		puts "Would you like to add an onsite contact?\nyes || no"
 		response = gets.chomp
@@ -87,6 +91,8 @@ class Helper
 		end
 	end
 
+	#Requests the number of fields and type of fields to add and then prints them accordingly.
+	#Makes a call back to getNumberOfGroups if more groups and fields are needed.
 	def addFields(selectedGroup, newSchema)
 	puts "How many fields to add?"
 	fieldsToAdd = gets.chomp.to_i
