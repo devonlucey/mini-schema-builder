@@ -1,0 +1,21 @@
+{
+  "name": "",
+  "reports": [
+    "client",
+    "public"
+  ],
+  "forms": {
+    "looker": {
+      "type": "choice",
+      "options": [
+        "",
+        "",
+        ""
+      ],
+      "validations": {
+        "required": true
+      }
+    }
+  },
+  "id": ""
+}

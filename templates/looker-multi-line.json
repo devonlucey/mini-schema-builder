@@ -6,7 +6,7 @@
   ],
   "forms": {
     "looker": {
-      "type": "single-line",
+      "type": "multi-line",
       "validations": {
         "required": true
       }

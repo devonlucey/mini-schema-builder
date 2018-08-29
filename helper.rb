@@ -74,7 +74,7 @@ class Helper
 
 	#Asks what group to edit and then moves to that group. Once in that group asks number and type of fields to add.
 	def findGroup(newSchema)
-		puts "Do you need to find a group?"
+		puts "Do you need to find a group?\nyes || no"
 		response = gets.chomp
 		if response.include? "y"
 			puts "Okay, there are #{newSchema['fields'].length} groups, which group would you like to edit?"
@@ -91,7 +91,7 @@ class Helper
 	puts "How many fields to add?"
 	fieldsToAdd = gets.chomp.to_i
 
-	puts "What type of field(s) are you going to add:\nsingle-line || multi-line || photo || photo-with-description || choice?"
+	puts "What type of field(s) are you going to add?:\nsingle-line || multi-line || photo || photo-with-description || choice"
 		case response = gets.chomp
 		when "single-line"
 			newSchema = Printer.singleLinePrint(selectedGroup, fieldsToAdd, newSchema)

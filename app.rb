@@ -1,7 +1,6 @@
 require_relative 'helper.rb'
 
-#Schema Builder V1.10  Used to start the process.
-#Needs more work because placeholder needs to replace newSchema['fields'] automatically instead of manual copy paste.
+#Schema Builder V1.11  Used to start the process.
 #Need to add MFM support
 
 class App
