@@ -1,4 +1,5 @@
 To start use 'ruby app.rb'
 
+Currently supported modes: schema
 Currently supported groups: generic and media
 Currently supported fields: photo, photo-with-description, single-line, multi-line, choice
