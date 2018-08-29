@@ -1,0 +1,10 @@
+{
+  "name": "Looker Instructions",
+  "forms": {
+    "looker": {
+      "type": "instructions",
+      "content": ""
+    }
+  },
+  "id": "looker_instructions"
+}

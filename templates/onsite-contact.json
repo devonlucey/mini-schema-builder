@@ -1,0 +1,73 @@
+{
+  "name": "Primary On-Site Contact",
+  "type": "group",
+  "groupType": "contact",
+  "fields": [
+    {
+      "name": "Name",
+      "reports": [
+        "client"
+      ],
+      "relationship": "information",
+      "forms": {
+        "client": {
+          "type": "proper-name",
+          "validations": {
+            "required": true
+          }
+        },
+        "looker": {
+          "type": "proper-name-display"
+        }
+      },
+      "id": "primary_onsite_contact_name"
+    },
+    {
+      "name": "Email",
+      "reports": [
+        "client"
+      ],
+      "forms": {
+        "client": {
+          "type": "email"
+        }
+      },
+      "id": "primary_onsite_contact_email"
+    },
+    {
+      "name": "Phone",
+      "reports": [
+        "client"
+      ],
+      "relationship": "information",
+      "forms": {
+        "client": {
+          "type": "phone",
+          "validations": {
+            "required": true
+          }
+        },
+        "looker": {
+          "type": "phone-display"
+        }
+      },
+      "id": "primary_onsite_contact_phone"
+    },
+    {
+      "name": "Alternate Phone",
+      "reports": [
+        "client"
+      ],
+      "relationship": "information",
+      "forms": {
+        "client": {
+          "type": "phone"
+        },
+        "looker": {
+          "type": "phone-display"
+        }
+      },
+      "id": "primary_onsite_contact_alternate_phone"
+    }
+  ]
+}

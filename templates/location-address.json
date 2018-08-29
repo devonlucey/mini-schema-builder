@@ -1,0 +1,27 @@
+{
+  "name": "Location",
+  "type": "group",
+  "groupType": "look-address",
+  "fields": [
+    {
+      "name": "Address",
+      "reports": [
+        "client"
+      ],
+      "relationship": "information",
+      "forms": {
+        "client": {
+          "type": "address-box",
+          "validations": {
+            "required": true
+          }
+        },
+        "looker": {
+          "type": "text"
+        }
+      },
+      "index": true,
+      "id": "location_address"
+    }
+  ]
+}

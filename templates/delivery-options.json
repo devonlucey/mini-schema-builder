@@ -1,0 +1,12 @@
+{
+  "name": "Delivery Options",
+  "forms": {
+    "client": {
+      "type": "delivery-options",
+      "validations": {
+        "required": true
+      }
+    }
+  },
+  "id": "delivery_options"
+}

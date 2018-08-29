@@ -2,94 +2,100 @@ require_relative 'templates.rb'
 
 class Printer
 
-	#Prints the new schema template
-	def self.newSchemaPrint()
-		newSchema = File.open("newSchema.json", "w")
-		File.write('newSchema.json', Templates.newSchema())
-	end
-
 	#Prints the media group template based on number requested.
 	def self.mediaGroupPrint(number, newSchema)
 		c = 0
 		while c < number
-			if c == 0
-				placeholder = JSON.parse(newSchema)['fields'] << Templates.mediaGroup()
-			else 
-				JSON.parse(placeholder.to_json)
-				placeholder = placeholder << Templates.genericGroup()
-			end
+				newSchema['fields'] = newSchema['fields'] << Templates.mediaGroup()
 		c += 1
 		end
-		return placeholder
+		return newSchema
 	end
 
 	#Prints the generic group template based on number requested.
 	def self.genericGroupPrint(number, newSchema)
 		c = 0
 		while c < number
-			if c == 0
-				placeholder = JSON.parse(newSchema)['fields'] << Templates.genericGroup()
-			else 
-				JSON.parse(placeholder.to_json)
-				placeholder = placeholder << Templates.genericGroup()
-			end
+				newSchema['fields'] = newSchema['fields'] << Templates.genericGroup()
 		c += 1
 		end
-		return placeholder
+		return newSchema
 	end
 
+##########################################################################################################################
+
+	#Prints the media group template based on number requested.
+	def self.referenceNumberPrint(newSchema)
+		newSchema['fields'] = newSchema['fields'] << Templates.referenceNumber()
+		return newSchema
+	end
+
+	#Prints the generic group template based on number requested.
+	def self.addressBoxPrint(newSchema)
+		newSchema['fields'] = newSchema['fields'] << Templates.addressBox()
+		return newSchema
+	end
+
+	#Prints the generic group template based on number requested.
+	def self.onsiteContactPrint(newSchema)
+		newSchema['fields'] = newSchema['fields'] << Templates.onsiteContact()
+		return newSchema
+	end
+
+##########################################################################################################################
+
 	#Prints the photo field template based on number requested.
-	def self.photosPrint(selectedGroup, fieldsToAdd, placeholder)
+	def self.photosPrint(selectedGroup, fieldsToAdd, newSchema)
 	c = 0
 		while c < fieldsToAdd
-			placeholder[selectedGroup - 1]['fields'] << Templates.lookerPhoto()
+			newSchema['fields'][selectedGroup - 1]['fields'] << Templates.lookerPhoto()
 			c += 1
 		end
 		puts "printing #{fieldsToAdd} photos"
-		return placeholder
+		return newSchema
 	end
 
 	#Prints the single-line field template based on number requested.
-	def self.singleLinePrint(selectedGroup, fieldsToAdd, placeholder)
+	def self.singleLinePrint(selectedGroup, fieldsToAdd, newSchema)
 		c = 0
 		while c < fieldsToAdd 
-			placeholder[selectedGroup - 1]['fields'] << Templates.lookerSingleLine()
+			newSchema['fields'][selectedGroup - 1]['fields'] << Templates.lookerSingleLine()
 			c += 1
 		end
 		puts "printing #{fieldsToAdd} single-lines"
-		return placeholder
+		return newSchema
 	end
 
 	#Prints the photoWithDescription field template based on number requested.
-	def self.photoWithDescriptionPrint(selectedGroup, fieldsToAdd, placeholder)
+	def self.photoWithDescriptionPrint(selectedGroup, fieldsToAdd, newSchema)
 	c = 0
 		while c < fieldsToAdd
-			placeholder[selectedGroup - 1]['fields'] << Templates.lookerPhotoWithDescription()
+			newSchema['fields'][selectedGroup - 1]['fields'] << Templates.lookerPhotoWithDescription()
 			c += 1
 		end
-		puts "printing #{fieldsToAdd} photos"
-		return placeholder
+		puts "printing #{fieldsToAdd} photo with descriptions"
+		return newSchema
 	end
 
 	#Prints the multi-line field template based on number requested.
-	def self.multiLinePrint(selectedGroup, fieldsToAdd, placeholder)
+	def self.multiLinePrint(selectedGroup, fieldsToAdd, newSchema)
 		c = 0
 		while c < fieldsToAdd 
-			placeholder[selectedGroup - 1]['fields'] << Templates.lookerMultiLine()
+			newSchema['fields'][selectedGroup - 1]['fields'] << Templates.lookerMultiLine()
 			c += 1
 		end
-		puts "printing #{fieldsToAdd} single-lines"
-		return placeholder
+		puts "printing #{fieldsToAdd} multi-lines"
+		return newSchema
 	end
 
 	#Prints the choice field template based on number requested.
-	def self.choicePrint(selectedGroup, fieldsToAdd, placeholder)
+	def self.choicePrint(selectedGroup, fieldsToAdd, newSchema)
 		c = 0
 		while c < fieldsToAdd 
-			placeholder[selectedGroup - 1]['fields'] << Templates.lookerChoice()
+			newSchema['fields'][selectedGroup - 1]['fields'] << Templates.lookerChoice()
 			c += 1
 		end
-		puts "printing #{fieldsToAdd} single-lines"
-		return placeholder
+		puts "printing #{fieldsToAdd} choices"
+		return newSchema
 	end
 end

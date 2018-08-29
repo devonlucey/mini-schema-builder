@@ -1,77 +1,109 @@
 require_relative 'printer.rb'
-require_relative 'templates.rb'
 require 'json'
 
 class Helper
 
-	#Promt user displays a welcome message and asks what needs to be done. Future content includes a search feature.
-	def promptUser()
-		puts "\nWelcome to the Schema Builder\nWould you like to create a new schema or search?"
+	def buildNewSchema(newSchema)
+		addReferenceNumber(newSchema)
+	end
+
+	def addReferenceNumber(newSchema)
+		puts "Would you like to add a reference number?\nyes || no"
 		response = gets.chomp
-		if response.include? "new"
-			puts "Okay, new schema"
-			Printer.newSchemaPrint()
-			return File.readlines("newSchema.json")
-		# elsif response.include? "search"
-		# 	puts "Okay, redirecting."
-		# 	Helper.new.search()
+		if response == "yes"
+			newSchema = Printer.referenceNumberPrint(newSchema)
+			addAddress(newSchema)
 		else
-			exit
+			addAddress(newSchema)
+		end
+	end
+
+	def addAddress(newSchema)
+		puts "Would you like to add an address box?\nyes || no"
+		response = gets.chomp
+		if response == "yes"
+			newSchema = Printer.addressBoxPrint(newSchema)
+			addOnsiteContact(newSchema)
+		else
+			addOnsiteContact(newSchema)
+		end
+	end
+
+	def addOnsiteContact(newSchema)
+		puts "Would you like to add an onsite contact?\nyes || no"
+		response = gets.chomp
+		if response == "yes"
+			newSchema = Printer.onsiteContactPrint(newSchema)
+			getNumberOfGroups(newSchema, 0)
+		else
+			getNumberOfGroups(newSchema, 0)
 		end
 	end
 
 	#Gets the number of groups a user would like to make. This requires some changes for efficiency.
-	def groupNumber()
-		puts "How many groups do you need?"
-		groupResponse = gets.chomp
+	def getNumberOfGroups(newSchema, count)
+		if count == 0
+			puts "How many groups do you need?"
+			groupResponse = gets.chomp.to_i
+			printGroups(groupResponse, newSchema)
+			count += 1
+		else
+			puts "Do you need to add more/different groups?\nyes || no"
+			response = gets.chomp
+			if response == "yes"
+				getNumberOfGroups(newSchema, 0)
+			elsif response == "no"
+				findGroup(newSchema)
+			end
+		end
 	end
 
 	#Asks what type of group to print and calls the printer. Needs to be looped for multiple group types.
 	def printGroups(groups, newSchema)
 
-		puts "Select a group type for this print: generic or media"
+		puts "Select a group type for this print:\ngeneric || media"
 		response = gets.chomp
 
 		if response.include? "generic"
-			placeholder = Printer.genericGroupPrint(groups, newSchema)
+			newSchema = Printer.genericGroupPrint(groups, newSchema)
 		elsif response.include? "media"	
-			placeholder = Printer.mediaGroupPrint(groups, newSchema)
+			newSchema = Printer.mediaGroupPrint(groups, newSchema)
 		end
-
-		return placeholder
+		findGroup(newSchema)
 	end
 
 	#Asks what group to edit and then moves to that group. Once in that group asks number and type of fields to add.
-	def findGroup(placeholder)
+	def findGroup(newSchema)
 		puts "Do you need to find a group?"
 		response = gets.chomp
 		if response.include? "y"
-			puts "Okay, there are #{placeholder.length} groups, which group would you like to edit?"
+			puts "Okay, there are #{newSchema['fields'].length} groups, which group would you like to edit?"
 			selectedGroup = gets.chomp.to_i
-
-			puts "How many fields to add?"
-				fieldsToAdd = gets.chomp.to_i
-
-			puts "What type of field(s) are you going to add:\nsingle-line, multi-line, photo, photo-with-description, or choice?"
-			case response = gets.chomp
-			when "single-line"
-				placeholder = Printer.singleLinePrint(selectedGroup, fieldsToAdd, placeholder)
-			when "multi-line"
-				placeholder = Printer.multiLinePrint(selectedGroup, fieldsToAdd, placeholder)
-			when "photo"
-				placeholder = Printer.photosPrint(selectedGroup, fieldsToAdd, placeholder)
-			when "photo-with-description"
-				placeholder = Printer.photoWithDescriptionPrint(selectedGroup, fieldsToAdd, placeholder)
-			when "choice"
-				placeholder = Printer.choicePrint(selectedGroup, fieldsToAdd, placeholder)
-			end		
-				findGroup(placeholder)
+			addFields(selectedGroup, newSchema)
+		else
+			newSchema = newSchema.to_s.gsub(/=>/, ":")
+			File.write("newSchema.json", newSchema)
+			exit
 		end
-		return placeholder
 	end
 
-	#Future Content
-	# def search()
-	# 	puts "Search parameters include \"new\", \"edit\", and \"help\""
-	# end
+	def addFields(selectedGroup, newSchema)
+	puts "How many fields to add?"
+	fieldsToAdd = gets.chomp.to_i
+
+	puts "What type of field(s) are you going to add:\nsingle-line || multi-line || photo || photo-with-description || choice?"
+		case response = gets.chomp
+		when "single-line"
+			newSchema = Printer.singleLinePrint(selectedGroup, fieldsToAdd, newSchema)
+		when "multi-line"
+			newSchema = Printer.multiLinePrint(selectedGroup, fieldsToAdd, newSchema)
+		when "photo"
+			newSchema = Printer.photosPrint(selectedGroup, fieldsToAdd, newSchema)
+		when "photo-with-description"
+			newSchema = Printer.photoWithDescriptionPrint(selectedGroup, fieldsToAdd, newSchema)
+		when "choice"
+			newSchema = Printer.choicePrint(selectedGroup, fieldsToAdd, newSchema)
+		end		
+			getNumberOfGroups(newSchema, 1)
+	end
 end
