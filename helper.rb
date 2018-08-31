@@ -85,31 +85,38 @@ class Helper
 			selectedGroup = gets.chomp.to_i
 			addFields(selectedGroup, newSchema)
 		else
-			newSchema = newSchema.to_s.gsub(/=>/, ":")
-			File.write("newSchema.json", newSchema)
-			exit
+			completeAndWriteSchema(newSchema)
 		end
 	end
 
 	#Requests the number of fields and type of fields to add and then prints them accordingly.
 	#Makes a call back to getNumberOfGroups if more groups and fields are needed.
 	def addFields(selectedGroup, newSchema)
-	puts "How many fields to add?"
-	fieldsToAdd = gets.chomp.to_i
+		puts "How many fields to add?"
+		fieldsToAdd = gets.chomp.to_i
 
-	puts "What type of field(s) are you going to add?:\nsingle-line || multi-line || photo || photo-with-description || choice"
+		puts "What type of field(s) are you going to add?:\nsingle-line || multi-line || photo || photo-with-description || choice"
 		case response = gets.chomp
-		when "single-line"
-			newSchema = Printer.singleLinePrint(selectedGroup, fieldsToAdd, newSchema)
-		when "multi-line"
-			newSchema = Printer.multiLinePrint(selectedGroup, fieldsToAdd, newSchema)
-		when "photo"
-			newSchema = Printer.photosPrint(selectedGroup, fieldsToAdd, newSchema)
-		when "photo-with-description"
-			newSchema = Printer.photoWithDescriptionPrint(selectedGroup, fieldsToAdd, newSchema)
-		when "choice"
-			newSchema = Printer.choicePrint(selectedGroup, fieldsToAdd, newSchema)
-		end		
-			getNumberOfGroups(newSchema, 1)
+			when "single-line"
+				newSchema = Printer.singleLinePrint(selectedGroup, fieldsToAdd, newSchema)
+			when "multi-line"
+				newSchema = Printer.multiLinePrint(selectedGroup, fieldsToAdd, newSchema)
+			when "photo"
+				newSchema = Printer.photosPrint(selectedGroup, fieldsToAdd, newSchema)
+			when "photo-with-description"
+				newSchema = Printer.photoWithDescriptionPrint(selectedGroup, fieldsToAdd, newSchema)
+			when "choice"
+				newSchema = Printer.choicePrint(selectedGroup, fieldsToAdd, newSchema)
+			end		
+		getNumberOfGroups(newSchema, 1)
+	end
+
+	def completeAndWriteSchema(newSchema)
+		newSchema = Printer.lookerInstructions(newSchema)
+		newSchema = Printer.deliveryOptions(newSchema)
+
+		newSchema = newSchema.to_s.gsub(/=>/, ":")
+		File.write("newSchema.json", newSchema)
+		exit
 	end
 end

@@ -1,0 +1,16 @@
+{
+  "name": "",
+  "reports": [
+    "client",
+    "public"
+  ],
+  "forms": {
+    "client": {
+      "type": "single-line",
+      "validations": {
+        "required": true
+      }
+    }
+  },
+  "id": ""
+}

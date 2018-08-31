@@ -1,0 +1,21 @@
+{
+  "name": "",
+  "reports": [
+    "client",
+    "public"
+  ],
+  "forms": {
+    "client": {
+      "type": "choice",
+      "options": [
+        "",
+        "",
+        ""
+      ],
+      "validations": {
+        "required": true
+      }
+    }
+  },
+  "id": ""
+}

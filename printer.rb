@@ -24,21 +24,33 @@ class Printer
 
 ##########################################################################################################################
 
-	#Prints the media group template based on number requested.
+	#Prints the reference number template.
 	def self.referenceNumberPrint(newSchema)
 		newSchema['fields'] = newSchema['fields'] << Templates.referenceNumber()
 		return newSchema
 	end
 
-	#Prints the generic group template based on number requested.
+	#Prints the address box template.
 	def self.addressBoxPrint(newSchema)
 		newSchema['fields'] = newSchema['fields'] << Templates.addressBox()
 		return newSchema
 	end
 
-	#Prints the generic group template based on number requested.
+	#Prints the onsite contact template.
 	def self.onsiteContactPrint(newSchema)
 		newSchema['fields'] = newSchema['fields'] << Templates.onsiteContact()
+		return newSchema
+	end
+
+	#Prints the looker instructions.
+	def self.lookerInstructions(newSchema)
+		newSchema['fields'] = newSchema['fields'] << Templates.lookerInstructions()
+		return newSchema
+	end
+
+	#Prints the delivery options.
+	def self.deliveryOptions(newSchema)
+		newSchema['fields'] = newSchema['fields'] << Templates.deliveryOptions()
 		return newSchema
 	end
 
