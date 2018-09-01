@@ -2,6 +2,9 @@ require_relative 'templates.rb'
 
 class Printer
 
+##########################################################################################################################
+	#Groups Printers
+
 	#Prints the media group template based on number requested.
 	def self.mediaGroupPrint(number, newSchema)
 		c = 0
@@ -23,6 +26,7 @@ class Printer
 	end
 
 ##########################################################################################################################
+	#Order Information Printers
 
 	#Prints the reference number template.
 	def self.referenceNumberPrint(newSchema)
@@ -55,9 +59,68 @@ class Printer
 	end
 
 ##########################################################################################################################
+	#Client Fields Printers
 
 	#Prints the photo field template based on number requested.
-	def self.photosPrint(selectedGroup, fieldsToAdd, newSchema)
+	def self.clientCheckBox(selectedGroup, fieldsToAdd, newSchema)
+	c = 0
+		while c < fieldsToAdd
+			newSchema['fields'][selectedGroup - 1]['fields'] << Templates.clientCheckBox()
+			c += 1
+		end
+		puts "printing #{fieldsToAdd} photos"
+		return newSchema
+	end
+
+	#Prints the single-line field template based on number requested.
+	def self.clientSingleLinePrint(selectedGroup, fieldsToAdd, newSchema)
+		c = 0
+		while c < fieldsToAdd 
+			newSchema['fields'][selectedGroup - 1]['fields'] << Templates.clientSingleLine()
+			c += 1
+		end
+		puts "printing #{fieldsToAdd} single-lines"
+		return newSchema
+	end
+
+	#Prints the photoWithDescription field template based on number requested.
+	def self.clientMap(selectedGroup, fieldsToAdd, newSchema)
+	c = 0
+		while c < fieldsToAdd
+			newSchema['fields'][selectedGroup - 1]['fields'] << Templates.clientMap()
+			c += 1
+		end
+		puts "printing #{fieldsToAdd} photo with descriptions"
+		return newSchema
+	end
+
+	#Prints the multi-line field template based on number requested.
+	def self.clientMultiLinePrint(selectedGroup, fieldsToAdd, newSchema)
+		c = 0
+		while c < fieldsToAdd 
+			newSchema['fields'][selectedGroup - 1]['fields'] << Templates.clientMultiLine()
+			c += 1
+		end
+		puts "printing #{fieldsToAdd} multi-lines"
+		return newSchema
+	end
+
+	#Prints the choice field template based on number requested.
+	def self.clientChoicePrint(selectedGroup, fieldsToAdd, newSchema)
+		c = 0
+		while c < fieldsToAdd 
+			newSchema['fields'][selectedGroup - 1]['fields'] << Templates.clientChoice()
+			c += 1
+		end
+		puts "printing #{fieldsToAdd} choices"
+		return newSchema
+	end
+
+##########################################################################################################################
+	#Looker Fields Printers
+
+	#Prints the photo field template based on number requested.
+	def self.lookerPhotosPrint(selectedGroup, fieldsToAdd, newSchema)
 	c = 0
 		while c < fieldsToAdd
 			newSchema['fields'][selectedGroup - 1]['fields'] << Templates.lookerPhoto()
@@ -68,7 +131,7 @@ class Printer
 	end
 
 	#Prints the single-line field template based on number requested.
-	def self.singleLinePrint(selectedGroup, fieldsToAdd, newSchema)
+	def self.lookerSingleLinePrint(selectedGroup, fieldsToAdd, newSchema)
 		c = 0
 		while c < fieldsToAdd 
 			newSchema['fields'][selectedGroup - 1]['fields'] << Templates.lookerSingleLine()
@@ -90,7 +153,7 @@ class Printer
 	end
 
 	#Prints the multi-line field template based on number requested.
-	def self.multiLinePrint(selectedGroup, fieldsToAdd, newSchema)
+	def self.lookerMultiLinePrint(selectedGroup, fieldsToAdd, newSchema)
 		c = 0
 		while c < fieldsToAdd 
 			newSchema['fields'][selectedGroup - 1]['fields'] << Templates.lookerMultiLine()
@@ -101,7 +164,7 @@ class Printer
 	end
 
 	#Prints the choice field template based on number requested.
-	def self.choicePrint(selectedGroup, fieldsToAdd, newSchema)
+	def self.lookerChoicePrint(selectedGroup, fieldsToAdd, newSchema)
 		c = 0
 		while c < fieldsToAdd 
 			newSchema['fields'][selectedGroup - 1]['fields'] << Templates.lookerChoice()
@@ -110,4 +173,6 @@ class Printer
 		puts "printing #{fieldsToAdd} choices"
 		return newSchema
 	end
+
+	##########################################################################################################################
 end

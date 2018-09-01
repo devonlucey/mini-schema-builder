@@ -83,35 +83,77 @@ class Helper
 		if response.include? "y"
 			puts "Okay, there are #{newSchema['fields'].length} groups, which group would you like to edit?"
 			selectedGroup = gets.chomp.to_i
-			addFields(selectedGroup, newSchema)
+			
+			if checkForClientOrLooker() == 0
+				addClientFields(selectedGroup, newSchema)
+			elsif checkForClientOrLooker == 1
+				addLookerFields(selectedGroup, newSchema)
+			end
 		else
 			completeAndWriteSchema(newSchema)
 		end
 	end
 
+	#Checks to see if the fields will be used by the client or looker and returns a value to findGroup
+	def checkForClientOrLooker()
+		puts "Will the fields in this group be used by clients or lookers?\nclient || looker"
+		response = gets.chomp
+		if response == "client"
+			return 0
+		elsif response == "looker"
+			return 1
+		else
+			puts "I didn't catch that, please try again."
+			checkForClientOrLooker()
+		end
+	end
+
 	#Requests the number of fields and type of fields to add and then prints them accordingly.
 	#Makes a call back to getNumberOfGroups if more groups and fields are needed.
-	def addFields(selectedGroup, newSchema)
-		puts "How many fields to add?"
+	def addClientFields(selectedGroup, newSchema)
+		puts "How many client fields to add?"
+		fieldsToAdd = gets.chomp.to_i
+
+		puts "What type of field(s) are you going to add?:\nsingle-line || multi-line || checkbox || map || choice"
+		case response = gets.chomp
+			when "single-line"
+				newSchema = Printer.clientSingleLinePrint(selectedGroup, fieldsToAdd, newSchema)
+			when "multi-line"
+				newSchema = Printer.clientMultiLinePrint(selectedGroup, fieldsToAdd, newSchema)
+			when "checkbox"
+				newSchema = Printer.clientCheckBox(selectedGroup, fieldsToAdd, newSchema)
+			when "map"
+				newSchema = Printer.clientMap(selectedGroup, fieldsToAdd, newSchema)
+			when "choice"
+				newSchema = Printer.clientChoicePrint(selectedGroup, fieldsToAdd, newSchema)
+			end		
+		getNumberOfGroups(newSchema, 1)
+	end
+
+	#Requests the number of fields and type of fields to add and then prints them accordingly.
+	#Makes a call back to getNumberOfGroups if more groups and fields are needed.
+	def addLookerFields(selectedGroup, newSchema)
+		puts "How many looker fields to add?"
 		fieldsToAdd = gets.chomp.to_i
 
 		puts "What type of field(s) are you going to add?:\nsingle-line || multi-line || photo || photo-with-description || choice"
 		case response = gets.chomp
 			when "single-line"
-				newSchema = Printer.singleLinePrint(selectedGroup, fieldsToAdd, newSchema)
+				newSchema = Printer.lookerSingleLinePrint(selectedGroup, fieldsToAdd, newSchema)
 			when "multi-line"
-				newSchema = Printer.multiLinePrint(selectedGroup, fieldsToAdd, newSchema)
+				newSchema = Printer.lookerMultiLinePrint(selectedGroup, fieldsToAdd, newSchema)
 			when "photo"
-				newSchema = Printer.photosPrint(selectedGroup, fieldsToAdd, newSchema)
+				newSchema = Printer.lookerPhotosPrint(selectedGroup, fieldsToAdd, newSchema)
 			when "photo-with-description"
 				newSchema = Printer.photoWithDescriptionPrint(selectedGroup, fieldsToAdd, newSchema)
 			when "choice"
-				newSchema = Printer.choicePrint(selectedGroup, fieldsToAdd, newSchema)
+				newSchema = Printer.lookerChoicePrint(selectedGroup, fieldsToAdd, newSchema)
 			end		
 		getNumberOfGroups(newSchema, 1)
 	end
 
 	def completeAndWriteSchema(newSchema)
+		puts "Adding Looker Instructions and Delivery Options."
 		newSchema = Printer.lookerInstructions(newSchema)
 		newSchema = Printer.deliveryOptions(newSchema)
 

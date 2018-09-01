@@ -30,11 +30,11 @@ class Templates
 ##########################################################################################################################
 	#Client Fields
 
-	def self.checkBox
+	def self.clientCheckBox
 		JSON.parse(File.readlines("./templates/client/checkbox.json").join())
 	end
 
-	def self.map
+	def self.clientMap
 		JSON.parse(File.readlines("./templates/client/map.json").join())
 	end
 
@@ -65,23 +65,23 @@ class Templates
 	#Looker Fields
 
 	def self.lookerChoice
-		JSON.parse(File.readlines("./templates/looker-choice.json").join())
+		JSON.parse(File.readlines("./templates/looker/looker-choice.json").join())
 	end
 
 	def self.lookerSingleLine
-		JSON.parse(File.readlines("./templates/looker-single-line.json").join())
+		JSON.parse(File.readlines("./templates/looker/looker-single-line.json").join())
 	end
 
 	def self.lookerMultiLine
-		JSON.parse(File.readlines("./templates/looker-multi-line.json").join())
+		JSON.parse(File.readlines("./templates/looker/looker-multi-line.json").join())
 	end
 
 	def self.lookerPhoto
-		JSON.parse(File.readlines("./templates/looker-photo.json").join())
+		JSON.parse(File.readlines("./templates/looker/looker-photo.json").join())
 	end
 
 	def self.lookerPhotoWithDescription
-		JSON.parse(File.readlines("./templates/photo-with-description.json").join())
+		JSON.parse(File.readlines("./templates/looker/photo-with-description.json").join())
 	end
 
 ##########################################################################################################################
