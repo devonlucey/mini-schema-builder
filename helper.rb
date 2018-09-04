@@ -86,7 +86,7 @@ class Helper
 			
 			if checkForClientOrLooker() == 0
 				addClientFields(selectedGroup, newSchema)
-			elsif checkForClientOrLooker == 1
+			else
 				addLookerFields(selectedGroup, newSchema)
 			end
 		else
