@@ -69,9 +69,9 @@ class Helper
 		response = gets.chomp
 
 		if response.include? "generic"
-			newSchema = Printer.genericGroupPrint(groups, newSchema)
+			newSchema['fields'] += Printer.createGenericGroup(groups)
 		elsif response.include? "media"	
-			newSchema = Printer.mediaGroupPrint(groups, newSchema)
+			newSchema['fields'] += Printer.createMediaGroup(groups)
 		end
 		findGroup(newSchema)
 	end
@@ -117,15 +117,15 @@ class Helper
 		puts "What type of field(s) are you going to add?:\nsingle-line || multi-line || checkbox || map || choice"
 		case response = gets.chomp
 			when "single-line"
-				newSchema = Printer.clientSingleLinePrint(selectedGroup, fieldsToAdd, newSchema)
+				newSchema['fields'][selectedGroup - 1]['fields'] += Printer.createClientSingleLine(fieldsToAdd)
 			when "multi-line"
-				newSchema = Printer.clientMultiLinePrint(selectedGroup, fieldsToAdd, newSchema)
+				newSchema['fields'][selectedGroup - 1]['fields'] += Printer.createClientMultiLine(fieldsToAdd)
 			when "checkbox"
-				newSchema = Printer.clientCheckBox(selectedGroup, fieldsToAdd, newSchema)
+				newSchema['fields'][selectedGroup - 1]['fields'] += Printer.createClientCheckBox(fieldsToAdd)
 			when "map"
-				newSchema = Printer.clientMap(selectedGroup, fieldsToAdd, newSchema)
+				newSchema['fields'][selectedGroup - 1]['fields'] += Printer.createClientMap(fieldsToAdd)
 			when "choice"
-				newSchema = Printer.clientChoicePrint(selectedGroup, fieldsToAdd, newSchema)
+				newSchema['fields'][selectedGroup - 1]['fields'] += Printer.createClientChoice(fieldsToAdd)
 			end		
 		getNumberOfGroups(newSchema, 1)
 	end
@@ -139,15 +139,15 @@ class Helper
 		puts "What type of field(s) are you going to add?:\nsingle-line || multi-line || photo || photo-with-description || choice"
 		case response = gets.chomp
 			when "single-line"
-				newSchema = Printer.lookerSingleLinePrint(selectedGroup, fieldsToAdd, newSchema)
+				newSchema['fields'][selectedGroup - 1]['fields'] += Printer.createLookerSingleLine(fieldsToAdd)
 			when "multi-line"
-				newSchema = Printer.lookerMultiLinePrint(selectedGroup, fieldsToAdd, newSchema)
+				newSchema['fields'][selectedGroup - 1]['fields'] += Printer.createLookerMultiLine(fieldsToAdd)
 			when "photo"
-				newSchema = Printer.lookerPhotosPrint(selectedGroup, fieldsToAdd, newSchema)
+				newSchema['fields'][selectedGroup - 1]['fields'] += Printer.createLookerPhotos(fieldsToAdd)
 			when "photo-with-description"
-				newSchema = Printer.photoWithDescriptionPrint(selectedGroup, fieldsToAdd, newSchema)
+				newSchema['fields'][selectedGroup - 1]['fields'] += Printer.createLookerPhotoWithDescription(fieldsToAdd)
 			when "choice"
-				newSchema = Printer.lookerChoicePrint(selectedGroup, fieldsToAdd, newSchema)
+				newSchema['fields'][selectedGroup - 1]['fields'] += Printer.createLookerChoice(fieldsToAdd)
 			end		
 		getNumberOfGroups(newSchema, 1)
 	end

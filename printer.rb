@@ -6,23 +6,13 @@ class Printer
 	#Groups Printers
 
 	#Prints the media group template based on number requested.
-	def self.mediaGroupPrint(number, newSchema)
-		c = 0
-		while c < number
-				newSchema['fields'] = newSchema['fields'] << Templates.mediaGroup()
-		c += 1
-		end
-		return newSchema
+	def self.createMediaGroup(number)
+		(1..number).map { |n| Templates.mediaGroup() }
 	end
 
 	#Prints the generic group template based on number requested.
-	def self.genericGroupPrint(number, newSchema)
-		c = 0
-		while c < number
-				newSchema['fields'] = newSchema['fields'] << Templates.genericGroup()
-		c += 1
-		end
-		return newSchema
+	def self.createGenericGroup(number)
+		(1..number).map { |n| Templates.genericGroup() }
 	end
 
 ##########################################################################################################################
@@ -62,116 +52,56 @@ class Printer
 	#Client Fields Printers
 
 	#Prints the photo field template based on number requested.
-	def self.clientCheckBox(selectedGroup, fieldsToAdd, newSchema)
-	c = 0
-		while c < fieldsToAdd
-			newSchema['fields'][selectedGroup - 1]['fields'] << Templates.clientCheckBox()
-			c += 1
-		end
-		puts "printing #{fieldsToAdd} photos"
-		return newSchema
+	def self.createClientCheckBox(number)
+		(1..number).map { |n| Templates.clientCheckBox() }
 	end
 
 	#Prints the single-line field template based on number requested.
-	def self.clientSingleLinePrint(selectedGroup, fieldsToAdd, newSchema)
-		c = 0
-		while c < fieldsToAdd 
-			newSchema['fields'][selectedGroup - 1]['fields'] << Templates.clientSingleLine()
-			c += 1
-		end
-		puts "printing #{fieldsToAdd} single-lines"
-		return newSchema
+	def self.createClientSingleLine(number)
+		(1..number).map { |n| Templates.clientSingleLine() }
 	end
 
 	#Prints the photoWithDescription field template based on number requested.
-	def self.clientMap(selectedGroup, fieldsToAdd, newSchema)
-	c = 0
-		while c < fieldsToAdd
-			newSchema['fields'][selectedGroup - 1]['fields'] << Templates.clientMap()
-			c += 1
-		end
-		puts "printing #{fieldsToAdd} photo with descriptions"
-		return newSchema
+	def self.createClientMap(number)
+		(1..number).map { |n| Templates.clientMap() }
 	end
 
 	#Prints the multi-line field template based on number requested.
-	def self.clientMultiLinePrint(selectedGroup, fieldsToAdd, newSchema)
-		c = 0
-		while c < fieldsToAdd 
-			newSchema['fields'][selectedGroup - 1]['fields'] << Templates.clientMultiLine()
-			c += 1
-		end
-		puts "printing #{fieldsToAdd} multi-lines"
-		return newSchema
+	def self.createClientMultiLine(number)
+		(1..number).map { |n| Templates.clientMultiLine() }
 	end
 
 	#Prints the choice field template based on number requested.
-	def self.clientChoicePrint(selectedGroup, fieldsToAdd, newSchema)
-		c = 0
-		while c < fieldsToAdd 
-			newSchema['fields'][selectedGroup - 1]['fields'] << Templates.clientChoice()
-			c += 1
-		end
-		puts "printing #{fieldsToAdd} choices"
-		return newSchema
+	def self.createClientChoice(number)
+		(1..number).map { |n| Templates.clientChoice() }
 	end
 
 ##########################################################################################################################
 	#Looker Fields Printers
 
 	#Prints the photo field template based on number requested.
-	def self.lookerPhotosPrint(selectedGroup, fieldsToAdd, newSchema)
-	c = 0
-		while c < fieldsToAdd
-			newSchema['fields'][selectedGroup - 1]['fields'] << Templates.lookerPhoto()
-			c += 1
-		end
-		puts "printing #{fieldsToAdd} photos"
-		return newSchema
+	def self.createLookerPhotos(number)
+		(1..number).map { |n| Templates.lookerPhoto() }
 	end
 
 	#Prints the single-line field template based on number requested.
-	def self.lookerSingleLinePrint(selectedGroup, fieldsToAdd, newSchema)
-		c = 0
-		while c < fieldsToAdd 
-			newSchema['fields'][selectedGroup - 1]['fields'] << Templates.lookerSingleLine()
-			c += 1
-		end
-		puts "printing #{fieldsToAdd} single-lines"
-		return newSchema
+	def self.createLookerSingleLine(number)
+		(1..number).map { |n| Templates.lookerSingleLine() }
 	end
 
 	#Prints the photoWithDescription field template based on number requested.
-	def self.photoWithDescriptionPrint(selectedGroup, fieldsToAdd, newSchema)
-	c = 0
-		while c < fieldsToAdd
-			newSchema['fields'][selectedGroup - 1]['fields'] << Templates.lookerPhotoWithDescription()
-			c += 1
-		end
-		puts "printing #{fieldsToAdd} photo with descriptions"
-		return newSchema
+	def self.createLookerPhotoWithDescription(number)
+		(1..number).map { |n| Templates.lookerPhotoWithDescription() }
 	end
 
 	#Prints the multi-line field template based on number requested.
-	def self.lookerMultiLinePrint(selectedGroup, fieldsToAdd, newSchema)
-		c = 0
-		while c < fieldsToAdd 
-			newSchema['fields'][selectedGroup - 1]['fields'] << Templates.lookerMultiLine()
-			c += 1
-		end
-		puts "printing #{fieldsToAdd} multi-lines"
-		return newSchema
+	def self.createLookerMultiLine(number)
+		(1..number).map { |n| Templates.lookerMultiLine() }
 	end
 
 	#Prints the choice field template based on number requested.
-	def self.lookerChoicePrint(selectedGroup, fieldsToAdd, newSchema)
-		c = 0
-		while c < fieldsToAdd 
-			newSchema['fields'][selectedGroup - 1]['fields'] << Templates.lookerChoice()
-			c += 1
-		end
-		puts "printing #{fieldsToAdd} choices"
-		return newSchema
+	def self.createLookerChoice(number)
+		(1..number).map { |n| Templates.lookerChoice() }
 	end
 
 	##########################################################################################################################
