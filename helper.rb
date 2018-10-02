@@ -38,42 +38,27 @@ class Helper
 		response = gets.chomp
 		if response == "yes"
 			newSchema = Printer.onsiteContactPrint(newSchema)
-			getNumberOfGroups(newSchema, 0)
+			getGroups(newSchema, 0)
 		else
-			getNumberOfGroups(newSchema, 0)
+			getGroups(newSchema, 0)
 		end
 	end
 
-	#Gets the number of groups a user would like to make. This requires some changes for efficiency.
-	def getNumberOfGroups(newSchema, count)
+	#Rewrite of getNumberOfGroups - now gets the number of groups and groupType and passes them to printer.
+	def getGroups(newSchema, count)
 		if count == 0
-			puts "How many groups do you need?"
-			groupResponse = gets.chomp.to_i
-			printGroups(groupResponse, newSchema)
-			count += 1
-		else
-			puts "Do you need to add more/different groups?\nyes || no"
-			response = gets.chomp
-			if response == "yes"
-				getNumberOfGroups(newSchema, 0)
-			elsif response == "no"
-				findGroup(newSchema)
+			puts "Please enter the number of groups followed by the type of the group(s), separated by a comma or space."
+			initialResponse = gets.chomp
+			numberOfGroups = initialResponse[0].to_i
+			if initialResponse.include? "generic"
+				newSchema['fields'] += Printer.createGenericGroup(numberOfGroups)
+			elsif initialResponse.include? "media"	
+				newSchema['fields'] += Printer.createMediaGroup(numberOfGroups)
 			end
+			findGroup(newSchema)
+		else
+			findGroup(newSchema)
 		end
-	end
-
-	#Asks what type of group to print and calls the printer. Needs to be looped for multiple group types.
-	def printGroups(groups, newSchema)
-
-		puts "Select a group type for this print:\ngeneric || media"
-		response = gets.chomp
-
-		if response.include? "generic"
-			newSchema['fields'] += Printer.createGenericGroup(groups)
-		elsif response.include? "media"	
-			newSchema['fields'] += Printer.createMediaGroup(groups)
-		end
-		findGroup(newSchema)
 	end
 
 	#Asks what group to edit and then moves to that group. Once in that group asks number and type of fields to add.
@@ -127,7 +112,7 @@ class Helper
 			when "choice"
 				newSchema['fields'][selectedGroup - 1]['fields'] += Printer.createClientChoice(fieldsToAdd)
 			end		
-		getNumberOfGroups(newSchema, 1)
+		getGroups(newSchema, 1)
 	end
 
 	#Requests the number of fields and type of fields to add and then prints them accordingly.
@@ -149,7 +134,7 @@ class Helper
 			when "choice"
 				newSchema['fields'][selectedGroup - 1]['fields'] += Printer.createLookerChoice(fieldsToAdd)
 			end		
-		getNumberOfGroups(newSchema, 1)
+		getGroups(newSchema, 1)
 	end
 
 	def completeAndWriteSchema(newSchema)
