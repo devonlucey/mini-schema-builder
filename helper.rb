@@ -1,8 +1,8 @@
 require_relative 'printer.rb'
+require_relative 'namer.rb'
 require 'json'
 
 class Helper
-
 	#Called to start building a new schema.
 	def buildNewSchema(newSchema)
 		addReferenceNumber(newSchema)
@@ -137,10 +137,15 @@ class Helper
 		getGroups(newSchema, 1)
 	end
 
+	def readNames()
+		readNames = Namer.new.readNames()
+	end
+
 	def completeAndWriteSchema(newSchema)
 		puts "Adding Looker Instructions and Delivery Options."
 		newSchema = Printer.lookerInstructions(newSchema)
 		newSchema = Printer.deliveryOptions(newSchema)
+		newSchema = Namer.new.addNames(newSchema, readNames())
 
 		newSchema = newSchema.to_s.gsub(/=>/, ":")
 		File.write("newSchema.json", newSchema)

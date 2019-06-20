@@ -1,6 +1,6 @@
 require_relative 'helper.rb'
 
-#Schema Builder V1.17  Used to start the process.
+#Schema Builder V1.18  Used to start the process.
 #Need to add MFM support
 
 class App

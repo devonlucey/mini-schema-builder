@@ -20,31 +20,31 @@ class Printer
 
 	#Prints the reference number template.
 	def self.referenceNumberPrint(newSchema)
-		newSchema['fields'] = newSchema['fields'] << Templates.referenceNumber()
+		newSchema['fields'] << Templates.referenceNumber()
 		return newSchema
 	end
 
 	#Prints the address box template.
 	def self.addressBoxPrint(newSchema)
-		newSchema['fields'] = newSchema['fields'] << Templates.addressBox()
+		newSchema['fields'] << Templates.addressBox()
 		return newSchema
 	end
 
 	#Prints the onsite contact template.
 	def self.onsiteContactPrint(newSchema)
-		newSchema['fields'] = newSchema['fields'] << Templates.onsiteContact()
+		newSchema['fields'] << Templates.onsiteContact()
 		return newSchema
 	end
 
 	#Prints the looker instructions.
 	def self.lookerInstructions(newSchema)
-		newSchema['fields'] = newSchema['fields'] << Templates.lookerInstructions()
+		newSchema['fields'] << Templates.lookerInstructions()
 		return newSchema
 	end
 
 	#Prints the delivery options.
 	def self.deliveryOptions(newSchema)
-		newSchema['fields'] = newSchema['fields'] << Templates.deliveryOptions()
+		newSchema['fields'] << Templates.deliveryOptions()
 		return newSchema
 	end
 
@@ -104,5 +104,5 @@ class Printer
 		(1..number).map { |n| Templates.lookerChoice() }
 	end
 
-	##########################################################################################################################
+	######################################################################################################################
 end
